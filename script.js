@@ -1,17 +1,13 @@
-let games = [
-  {
-    name: "Crazy Cattle 3D",
-    url: "https://crazy-cattle.github.io/",
-    img: "https://crazy-cattle.github.io/icon.png"
-  },
-  {
-    name: "Slope",
-    url: "https://3kh0.github.io/projects/slope/",
-    img: "https://images.crazygames.com/games/slope/cover-160x160.png"
-  }
-];
+let games = [];
 
-function loadGames(list = games){
+fetch("games.json")
+.then(res => res.json())
+.then(data => {
+  games = data.games;
+  loadGames(games);
+});
+
+function loadGames(list){
   document.getElementById("games").innerHTML =
     list.map(g=>`
       <div class="card" onclick="openGame('${g.url}')">
@@ -29,5 +25,3 @@ document.getElementById("search").oninput = e=>{
   let v = e.target.value.toLowerCase();
   loadGames(games.filter(g=>g.name.toLowerCase().includes(v)));
 };
-
-loadGames();
