@@ -1,0 +1,54 @@
+{
+  "games": [
+    {
+      "name": "Crazy Cattle 3D",
+      "url": "https://crazy-cattle.github.io/",
+      "img": "https://crazy-cattle.github.io/icon.png"
+    },
+    {
+      "name": "Slope",
+      "url": "https://3kh0.github.io/projects/slope/",
+      "img": "https://images.crazygames.com/games/slope/cover-160x160.png"
+    },
+    {
+      "name": "Run 3",
+      "url": "https://3kh0.github.io/projects/run-3/",
+      "img": "https://images.crazygames.com/games/run-3/cover-160x160.png"
+    },
+    {
+      "name": "Cookie Clicker",
+      "url": "https://orteil.dashnet.org/cookieclicker/",
+      "img": "https://upload.wikimedia.org/wikipedia/en/6/6c/Cookie_Clicker_logo.png"
+    },
+    {
+      "name": "YoHoHo.io",
+      "url": "https://yohoho.io/",
+      "img": "https://yohoho.io/img/logo.png"
+    },
+    {
+      "name": "Drift Hunters",
+      "url": "https://3kh0.github.io/projects/drift-hunters/",
+      "img": "https://images.crazygames.com/games/drift-hunters/cover-160x160.png"
+    },
+    {
+      "name": "1v1.LOL",
+      "url": "https://1v1.lol/",
+      "img": "https://images.crazygames.com/games/1v1-lol/cover-160x160.png"
+    },
+    {
+      "name": "Subway Surfers",
+      "url": "https://poki.com/en/g/subway-surfers",
+      "img": "https://images.crazygames.com/games/subway-surfers/cover-160x160.png"
+    },
+    {
+      "name": "Retro Bowl",
+      "url": "https://3kh0.github.io/projects/retro-bowl/",
+      "img": "https://images.crazygames.com/games/retro-bowl/cover-160x160.png"
+    },
+    {
+      "name": "Tunnel Rush",
+      "url": "https://3kh0.github.io/projects/tunnel-rush/",
+      "img": "https://images.crazygames.com/games/tunnel-rush/cover-160x160.png"
+    }
+  ]
+}
