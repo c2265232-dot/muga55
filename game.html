@@ -3,8 +3,9 @@
 <body style="margin:0;background:#0f0f0f;color:white;">
 
 <!-- TOP BAR -->
-<div style="padding:10px;background:#121212;">
+<div style="display:flex;gap:10px;padding:10px;background:#121212;">
   <button onclick="goBack()">⬅ Back</button>
+  <button onclick="goFullscreen()">⛶ Fullscreen</button>
 </div>
 
 <!-- GAME -->
@@ -16,6 +17,18 @@ document.getElementById("frame").src = url;
 
 function goBack(){
   location.href = "index.html";
+}
+
+function goFullscreen(){
+  let iframe = document.getElementById("frame");
+
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) {
+    iframe.msRequestFullscreen();
+  }
 }
 </script>
 
