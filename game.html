@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0;background:#0f0f0f;">
+
+<iframe id="frame" style="width:100%;height:100vh;border:none;"></iframe>
+
+<script>
+const url = new URLSearchParams(window.location.search).get("url");
+document.getElementById("frame").src = url;
+</script>
+
+</body>
+</html>
