@@ -40,11 +40,23 @@ let games = [
 {"name":"Drive Mad","url":"https://poki.com/en/g/drive-mad","img":"https://images.crazygames.com/games/drive-mad/cover-160x160.png"},
 {"name":"Blumgi Rocket","url":"https://poki.com/en/g/blumgi-rocket","img":"https://images.crazygames.com/games/blumgi-rocket/cover-160x160.png"},
 
-{"name":"Stick War","url":"https://poki.com/en/g/stickman-war","img":"https://images.crazygames.com/games/stickman-war/cover-160x160.png"},
-{"name":"Stick Fighter","url":"https://poki.com/en/g/stickman-fighter","img":"https://images.crazygames.com/games/stickman-fighter/cover-160x160.png"},
 {"name":"Basket Random","url":"https://poki.com/en/g/basket-random","img":"https://images.crazygames.com/games/basket-random/cover-160x160.png"},
 {"name":"Soccer Random","url":"https://poki.com/en/g/soccer-random","img":"https://images.crazygames.com/games/soccer-random/cover-160x160.png"},
-{"name":"Volley Random","url":"https://poki.com/en/g/volley-random","img":"https://images.crazygames.com/games/volley-random/cover-160x160.png"}
+{"name":"Volley Random","url":"https://poki.com/en/g/volley-random","img":"https://images.crazygames.com/games/volley-random/cover-160x160.png"},
+{"name":"Boxing Random","url":"https://poki.com/en/g/boxing-random","img":"https://images.crazygames.com/games/boxing-random/cover-160x160.png"},
+{"name":"Getaway Shootout","url":"https://poki.com/en/g/getaway-shootout","img":"https://images.crazygames.com/games/getaway-shootout/cover-160x160.png"},
+
+{"name":"Rooftop Snipers","url":"https://poki.com/en/g/rooftop-snipers","img":"https://images.crazygames.com/games/rooftop-snipers/cover-160x160.png"},
+{"name":"Gun Mayhem","url":"https://poki.com/en/g/gun-mayhem","img":"https://images.crazygames.com/games/gun-mayhem/cover-160x160.png"},
+{"name":"Tank Trouble","url":"https://poki.com/en/g/tank-trouble","img":"https://images.crazygames.com/games/tank-trouble/cover-160x160.png"},
+{"name":"Duck Life","url":"https://poki.com/en/g/duck-life","img":"https://images.crazygames.com/games/duck-life/cover-160x160.png"},
+{"name":"Duck Life 2","url":"https://poki.com/en/g/duck-life-2","img":"https://images.crazygames.com/games/duck-life-2/cover-160x160.png"},
+
+{"name":"Duck Life 3","url":"https://poki.com/en/g/duck-life-3","img":"https://images.crazygames.com/games/duck-life-3/cover-160x160.png"},
+{"name":"Duck Life 4","url":"https://poki.com/en/g/duck-life-4","img":"https://images.crazygames.com/games/duck-life-4/cover-160x160.png"},
+{"name":"Papa's Freezeria","url":"https://poki.com/en/g/papas-freezeria","img":"https://images.crazygames.com/games/papas-freezeria/cover-160x160.png"},
+{"name":"Papa's Burgeria","url":"https://poki.com/en/g/papas-burgeria","img":"https://images.crazygames.com/games/papas-burgeria/cover-160x160.png"},
+{"name":"Papa's Pizzeria","url":"https://poki.com/en/g/papas-pizzeria","img":"https://images.crazygames.com/games/papas-pizzeria/cover-160x160.png"}
 ];
 
 /* ⭐ RATINGS */
