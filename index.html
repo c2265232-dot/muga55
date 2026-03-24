@@ -2,25 +2,19 @@
 <html>
 <head>
   <title>MUGA</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background:#0f0f0f;color:white;font-family:Arial;text-align:center;">
+<body>
 
-<h1>MUGA</h1>
+<div class="topbar">
+  <h1>MUGA</h1>
+  <input id="search" placeholder="Search games...">
+</div>
 
-<button onclick="openGame('https://crazy-cattle.github.io/')">
-  Play Crazy Cattle 3D
-</button>
+<div id="games" class="grid"></div>
 
-<button onclick="openGame('https://3kh0.github.io/projects/slope/')">
-  Play Slope
-</button>
-
-<script>
-function openGame(url){
-  location.href = "game.html?url=" + encodeURIComponent(url);
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
