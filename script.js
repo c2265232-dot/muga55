@@ -1,3 +1,4 @@
+console.log("SCRIPT LOADED");
 /* =====================
    GAMES (EDIT HERE ONLY)
 ===================== */
