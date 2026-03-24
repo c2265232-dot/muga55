@@ -18,7 +18,7 @@
 
 <script>
 function openGame(url){
-  window.open(url, "_blank");
+  location.href = "game.html?url=" + encodeURIComponent(url);
 }
 </script>
 
