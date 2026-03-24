@@ -3,17 +3,29 @@
 <head>
   <title>MUGA</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- TAB ICON -->
+  <link id="icon" rel="icon" href="">
 </head>
 
 <body>
 
 <div class="topbar">
   <h1>MUGA</h1>
+
   <input id="search" placeholder="Search games...">
-  <button onclick="login()">Login</button>
+
+  <button onclick="cloakTab()">🕶️ Cloak</button>
 </div>
 
-<div id="leaderboard" style="padding:10px;"></div>
+<!-- CATEGORIES -->
+<div class="categories">
+  <button onclick="filterCategory('all')">All</button>
+  <button onclick="filterCategory('action')">Action</button>
+  <button onclick="filterCategory('io')">IO</button>
+  <button onclick="filterCategory('driving')">Driving</button>
+  <button onclick="filterCategory('classic')">Classic</button>
+</div>
 
 <div id="games" class="grid"></div>
 
