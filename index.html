@@ -3,18 +3,15 @@
 <head>
   <title>MUGA</title>
   <link rel="stylesheet" href="style.css">
-  <link id="icon" rel="icon" href="">
   <script src="script.js" defer></script>
 </head>
 
 <body>
 
 <div class="topbar">
-  <div class="logo">🟢 MUGA</div>
-
-  <input id="search" placeholder="Search games...">
-
-  <button onclick="cloakTab()">🕶️</button>
+  <div>🟢 MUGA</div>
+  <input id="search" placeholder="Search...">
+  <button onclick="openSettings()">⚙️</button>
 </div>
 
 <div class="categories">
@@ -22,42 +19,9 @@
   <button onclick="filterCategory('action')">Action</button>
   <button onclick="filterCategory('io')">IO</button>
   <button onclick="filterCategory('driving')">Driving</button>
-  <button onclick="filterCategory('classic')">Classic</button>
 </div>
 
 <div id="games" class="grid"></div>
-
-<!-- COMMENTS PANEL -->
-<div id="commentPanel" class="panel hidden">
-  <div class="panel-content">
-    <h2>Comments</h2>
-    <div id="commentList"></div>
-    <input id="commentInput" placeholder="Write comment">
-    <button onclick="submitComment()">Post</button>
-    <button onclick="closeComments()">Close</button>
-  </div>
-</div>
-
-<!-- SETTINGS PANEL -->
-<div id="settingsPanel" class="panel hidden">
-  <div class="panel-content">
-    <h2>Customize</h2>
-
-    <label>Background</label>
-    <input type="color" id="bgColor">
-
-    <label>Cards</label>
-    <input type="color" id="cardColor">
-
-    <label>Buttons</label>
-    <input type="color" id="accentColor">
-
-    <button onclick="saveTheme()">Save</button>
-    <button onclick="closeSettings()">Close</button>
-  </div>
-</div>
-
-<button class="settingsBtn" onclick="openSettings()">⚙️</button>
 
 </body>
 </html>
