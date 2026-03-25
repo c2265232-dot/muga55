@@ -15,7 +15,6 @@ function loadGames(list = games){
     <div class="card" onclick="openGame('${g.url}')">
       <img src="${g.img}">
       <p>${g.name}</p>
-
       <button onclick="event.stopPropagation(); openComments('${g.url}')">💬</button>
     </div>
   `).join("");
@@ -54,7 +53,7 @@ function filterCategory(cat){
   else loadGames(games.filter(g=>g.cat===cat));
 }
 
-/* COMMENTS SYSTEM */
+/* COMMENTS */
 let comments = JSON.parse(localStorage.getItem("comments")||"{}");
 
 function renderComments(){
@@ -81,12 +80,14 @@ function submitComment(){
   renderComments();
 }
 
-/* SETTINGS */
+/* THEME + TAB CLOAK */
 function saveTheme(){
-  let theme={
-    bg:document.getElementById("bgColor").value,
-    card:document.getElementById("cardColor").value,
-    accent:document.getElementById("accentColor").value
+  let theme = {
+    bg: document.getElementById("bgColor").value,
+    card: document.getElementById("cardColor").value,
+    accent: document.getElementById("accentColor").value,
+    tabName: document.getElementById("tabName").value,
+    tabIcon: document.getElementById("tabIcon").value
   };
 
   localStorage.setItem("theme", JSON.stringify(theme));
@@ -97,10 +98,22 @@ function applyTheme(){
   let t = JSON.parse(localStorage.getItem("theme"));
   if(!t) return;
 
-  document.body.style.background = t.bg;
+  if(t.bg) document.body.style.background = t.bg;
 
-  document.querySelectorAll(".card").forEach(c=>c.style.background=t.card);
-  document.querySelectorAll("button").forEach(b=>b.style.background=t.accent);
+  document.querySelectorAll(".card").forEach(c=>{
+    if(t.card) c.style.background = t.card;
+  });
+
+  document.querySelectorAll("button").forEach(b=>{
+    if(t.accent) b.style.background = t.accent;
+  });
+
+  if(t.tabName) document.title = t.tabName;
+
+  if(t.tabIcon){
+    let icon = document.getElementById("icon");
+    if(icon) icon.href = t.tabIcon;
+  }
 }
 
 /* AUTO RUN */
