@@ -3,19 +3,21 @@
 <head>
   <title>MUGA</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- TAB ICON -->
   <link id="icon" rel="icon" href="">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
 
+<!-- TOP BAR -->
 <div class="topbar">
-  <h1>MUGA</h1>
+  <div class="logo">
+    🟢 <span>MUGA</span>
+  </div>
 
   <input id="search" placeholder="Search games...">
 
-  <button onclick="cloakTab()">🕶️ Cloak</button>
+  <button class="cloak" onclick="cloakTab()">🕶️</button>
 </div>
 
 <!-- CATEGORIES -->
@@ -25,11 +27,11 @@
   <button onclick="filterCategory('io')">IO</button>
   <button onclick="filterCategory('driving')">Driving</button>
   <button onclick="filterCategory('classic')">Classic</button>
+  <button onclick="filterCategory('sports')">Sports</button>
 </div>
 
+<!-- GAME GRID -->
 <div id="games" class="grid"></div>
-
-<script src="script.js" defer></script>
 
 </body>
 </html>
