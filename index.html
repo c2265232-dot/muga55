@@ -9,42 +9,31 @@
 
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
-  <div class="logo">
-    🟢 <span>MUGA</span>
-  </div>
+  <div class="logo">🟢 MUGA</div>
 
   <input id="search" placeholder="Search games...">
 
-  <button class="cloak" onclick="cloakTab()">🕶️</button>
+  <button onclick="cloakTab()">🕶️</button>
 </div>
 
-<!-- CATEGORIES -->
 <div class="categories">
   <button onclick="filterCategory('all')">All</button>
   <button onclick="filterCategory('action')">Action</button>
   <button onclick="filterCategory('io')">IO</button>
   <button onclick="filterCategory('driving')">Driving</button>
   <button onclick="filterCategory('classic')">Classic</button>
-  <button onclick="filterCategory('sports')">Sports</button>
 </div>
 
-<!-- GAME GRID -->
 <div id="games" class="grid"></div>
 
-</body>
-</html>
 <!-- COMMENTS PANEL -->
 <div id="commentPanel" class="panel hidden">
   <div class="panel-content">
     <h2>Comments</h2>
-
     <div id="commentList"></div>
-
-    <input id="commentInput" placeholder="Write a comment...">
+    <input id="commentInput" placeholder="Write comment">
     <button onclick="submitComment()">Post</button>
-
     <button onclick="closeComments()">Close</button>
   </div>
 </div>
@@ -57,10 +46,10 @@
     <label>Background</label>
     <input type="color" id="bgColor">
 
-    <label>Card Color</label>
+    <label>Cards</label>
     <input type="color" id="cardColor">
 
-    <label>Accent</label>
+    <label>Buttons</label>
     <input type="color" id="accentColor">
 
     <button onclick="saveTheme()">Save</button>
@@ -68,5 +57,7 @@
   </div>
 </div>
 
-<!-- SETTINGS BUTTON -->
 <button class="settingsBtn" onclick="openSettings()">⚙️</button>
+
+</body>
+</html>
