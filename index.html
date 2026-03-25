@@ -3,22 +3,21 @@
 <head>
   <title>MUGA</title>
   <link rel="stylesheet" href="style.css">
+  <link id="icon" rel="icon">
   <script src="script.js" defer></script>
 </head>
 
 <body>
 
 <div class="topbar">
-  <div>🟢 MUGA</div>
-  <input id="search" placeholder="Search...">
-  <button onclick="openSettings()">⚙️</button>
-</div>
+  <div class="logo">🟢 MUGA</div>
 
-<div class="categories">
-  <button onclick="filterCategory('all')">All</button>
-  <button onclick="filterCategory('action')">Action</button>
-  <button onclick="filterCategory('io')">IO</button>
-  <button onclick="filterCategory('driving')">Driving</button>
+  <input id="search" placeholder="Search games...">
+
+  <div>
+    <button onclick="goFavorites()">⭐</button>
+    <button onclick="openSettings()">⚙️</button>
+  </div>
 </div>
 
 <div id="games" class="grid"></div>
