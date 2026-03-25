@@ -6,6 +6,40 @@ let games = [
 {"name":"Agar.io","url":"https://agar.io/","img":"https://upload.wikimedia.org/wikipedia/en/1/19/Agar.io_logo.png","cat":"io"}
 ];
 
+/* USERS */
+let users = JSON.parse(localStorage.getItem("users")||"{}");
+let currentUser = localStorage.getItem("currentUser") || null;
+
+function signup(){
+  let u = document.getElementById("username").value;
+  let p = document.getElementById("password").value;
+
+  if(!u || !p) return alert("Enter info");
+
+  users[u] = p;
+  localStorage.setItem("users", JSON.stringify(users));
+  alert("Account created!");
+}
+
+function login(){
+  let u = document.getElementById("username").value;
+  let p = document.getElementById("password").value;
+
+  if(users[u] === p){
+    currentUser = u;
+    localStorage.setItem("currentUser", u);
+    alert("Logged in!");
+    showUser();
+  } else {
+    alert("Wrong login");
+  }
+}
+
+function showUser(){
+  let el = document.getElementById("currentUser");
+  if(el) el.innerText = currentUser ? "Logged in as: " + currentUser : "Not logged in";
+}
+
 /* LOAD GAMES */
 function loadGames(list = games){
   let el = document.getElementById("games");
@@ -20,7 +54,7 @@ function loadGames(list = games){
   `).join("");
 }
 
-/* NAVIGATION */
+/* NAV */
 function openGame(url){
   location.href = "game.html?url=" + encodeURIComponent(url);
 }
@@ -53,7 +87,7 @@ function filterCategory(cat){
   else loadGames(games.filter(g=>g.cat===cat));
 }
 
-/* COMMENTS */
+/* COMMENTS WITH USERS */
 let comments = JSON.parse(localStorage.getItem("comments")||"{}");
 
 function renderComments(){
@@ -63,7 +97,11 @@ function renderComments(){
   let el = document.getElementById("commentList");
   if(!el) return;
 
-  el.innerHTML = list.map(c=>`<div class="comment">${c}</div>`).join("");
+  el.innerHTML = list.map(c=>`
+    <div class="comment">
+      <b>${c.user}</b>: ${c.text}
+    </div>
+  `).join("");
 }
 
 function submitComment(){
@@ -73,19 +111,24 @@ function submitComment(){
   if(!input || !input.value) return;
 
   if(!comments[game]) comments[game]=[];
-  comments[game].push(input.value);
+
+  comments[game].push({
+    user: currentUser || "Guest",
+    text: input.value
+  });
 
   localStorage.setItem("comments", JSON.stringify(comments));
   input.value="";
   renderComments();
 }
 
-/* THEME + TAB CLOAK */
+/* THEME + CLOAK */
 function saveTheme(){
   let theme = {
     bg: document.getElementById("bgColor").value,
     card: document.getElementById("cardColor").value,
     accent: document.getElementById("accentColor").value,
+    text: document.getElementById("textColor").value,
     tabName: document.getElementById("tabName").value,
     tabIcon: document.getElementById("tabIcon").value
   };
@@ -99,6 +142,7 @@ function applyTheme(){
   if(!t) return;
 
   if(t.bg) document.body.style.background = t.bg;
+  if(t.text) document.body.style.color = t.text;
 
   document.querySelectorAll(".card").forEach(c=>{
     if(t.card) c.style.background = t.card;
@@ -116,7 +160,8 @@ function applyTheme(){
   }
 }
 
-/* AUTO RUN */
+/* START */
 loadGames();
 renderComments();
+showUser();
 setTimeout(applyTheme,100);
