@@ -35,3 +35,38 @@
 
 </body>
 </html>
+<!-- COMMENTS PANEL -->
+<div id="commentPanel" class="panel hidden">
+  <div class="panel-content">
+    <h2>Comments</h2>
+
+    <div id="commentList"></div>
+
+    <input id="commentInput" placeholder="Write a comment...">
+    <button onclick="submitComment()">Post</button>
+
+    <button onclick="closeComments()">Close</button>
+  </div>
+</div>
+
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel" class="panel hidden">
+  <div class="panel-content">
+    <h2>Customize</h2>
+
+    <label>Background</label>
+    <input type="color" id="bgColor">
+
+    <label>Card Color</label>
+    <input type="color" id="cardColor">
+
+    <label>Accent</label>
+    <input type="color" id="accentColor">
+
+    <button onclick="saveTheme()">Save</button>
+    <button onclick="closeSettings()">Close</button>
+  </div>
+</div>
+
+<!-- SETTINGS BUTTON -->
+<button class="settingsBtn" onclick="openSettings()">⚙️</button>
