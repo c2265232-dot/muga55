@@ -41,44 +41,73 @@ let games = [
 
 /* KEEP EVERYTHING ELSE SAME BELOW */
 /* =====================
-   USERS
+   THEME STORAGE
 ===================== */
-let users = JSON.parse(localStorage.getItem("users")||"{}");
-let currentUser = localStorage.getItem("currentUser");
+let savedThemes = JSON.parse(localStorage.getItem("themes") || "{}");
+let activeTheme = JSON.parse(localStorage.getItem("activeTheme") || "null");
 
-function signup(){
-  let u=username.value, p=password.value;
-  if(!u||!p) return alert("Enter info");
-  users[u]=p;
-  localStorage.setItem("users",JSON.stringify(users));
-  alert("Created!");
+/* =====================
+   APPLY THEME (FIXED!)
+===================== */
+function applyTheme(t){
+  if(!t) return;
+
+  document.body.style.background = t.bg || "#0e0e0e";
+  document.body.style.color = t.text || "white";
+
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.background = t.card || "#151515";
+  });
+
+  document.querySelectorAll("button").forEach(b=>{
+    b.style.background = t.accent || "#1a1a1a";
+  });
+
+  if(t.tabName) document.title = t.tabName;
+
+  let icon = document.getElementById("icon");
+  if(icon && t.tabIcon) icon.href = t.tabIcon;
 }
 
-function login(){
-  let u=username.value, p=password.value;
-  if(users[u]===p){
-    currentUser=u;
-    localStorage.setItem("currentUser",u);
-    alert("Logged in");
-    showUser();
-  } else alert("Wrong");
-}
-
-function showUser(){
-  if(currentUserEl=document.getElementById("currentUser"))
-    currentUserEl.innerText=currentUser?("Logged in: "+currentUser):"Not logged in";
+/* LOAD ACTIVE THEME ON EVERY PAGE */
+function loadActiveTheme(){
+  let t = JSON.parse(localStorage.getItem("activeTheme"));
+  if(t) applyTheme(t);
 }
 
 /* =====================
-   THEMES SYSTEM
+   PRESETS
 ===================== */
-let savedThemes = JSON.parse(localStorage.getItem("themes")||"{}");
+function loadPreset(name){
+  let presets = {
+    "Coolmath": {
+      bg:"#0f172a", card:"#1e293b", accent:"#22c55e", text:"#ffffff",
+      tabName:"Coolmath Games", tabIcon:"https://www.coolmathgames.com/favicon.ico"
+    },
+    "Google": {
+      bg:"#ffffff", card:"#f1f3f4", accent:"#4285f4", text:"#000000",
+      tabName:"Google", tabIcon:"https://www.google.com/favicon.ico"
+    },
+    "Dark": {
+      bg:"#0e0e0e", card:"#151515", accent:"#4caf50", text:"#ffffff"
+    }
+  };
 
+  let t = presets[name];
+  if(!t) return;
+
+  localStorage.setItem("activeTheme", JSON.stringify(t));
+  applyTheme(t);
+}
+
+/* =====================
+   SAVE CUSTOM THEME
+===================== */
 function saveTheme(){
   let name = document.getElementById("themeName").value;
-  if(!name) return alert("Name your theme");
+  if(!name) return alert("Name it");
 
-  savedThemes[name] = {
+  let t = {
     bg:bgColor.value,
     card:cardColor.value,
     accent:accentColor.value,
@@ -87,10 +116,30 @@ function saveTheme(){
     tabIcon:tabIcon.value
   };
 
+  savedThemes[name] = t;
+
   localStorage.setItem("themes", JSON.stringify(savedThemes));
+  localStorage.setItem("activeTheme", JSON.stringify(t));
+
   updateThemeList();
+  applyTheme(t);
 }
 
+/* =====================
+   LOAD SAVED THEME
+===================== */
+function loadTheme(){
+  let name = document.getElementById("themeList").value;
+  let t = savedThemes[name];
+  if(!t) return;
+
+  localStorage.setItem("activeTheme", JSON.stringify(t));
+  applyTheme(t);
+}
+
+/* =====================
+   UPDATE DROPDOWN
+===================== */
 function updateThemeList(){
   let list = document.getElementById("themeList");
   if(!list) return;
@@ -99,97 +148,110 @@ function updateThemeList(){
     .map(t=>`<option>${t}</option>`).join("");
 }
 
-function loadTheme(){
-  let name = document.getElementById("themeList").value;
-  let t = savedThemes[name];
-  if(!t) return;
+/* =====================
+   FAVORITES ⭐
+===================== */
+let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
-  applyTheme(t);
+function toggleFavorite(url){
+  if(favorites.includes(url)){
+    favorites = favorites.filter(f=>f!==url);
+  } else {
+    favorites.push(url);
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  loadGames();
 }
 
-function applyTheme(t){
-  document.body.style.background = t.bg;
-  document.body.style.color = t.text;
-
-  document.querySelectorAll(".card").forEach(c=>c.style.background=t.card);
-  document.querySelectorAll("button").forEach(b=>b.style.background=t.accent);
-
-  if(t.tabName) document.title = t.tabName;
-
-  let icon = document.getElementById("icon");
-  if(icon && t.tabIcon) icon.href = t.tabIcon;
+function isFav(url){
+  return favorites.includes(url);
 }
 
 /* =====================
-   GAMES
+   LOAD GAMES
 ===================== */
-function loadGames(list=games){
-  let el=document.getElementById("games");
+function loadGames(list = games){
+  let el = document.getElementById("games");
   if(!el) return;
 
-  el.innerHTML=list.map(g=>`
+  el.innerHTML = list.map(g=>`
     <div class="card" onclick="openGame('${g.url}')">
       <img src="${g.img}">
       <p>${g.name}</p>
+
       <button onclick="event.stopPropagation(); openComments('${g.url}')">💬</button>
+      <button onclick="event.stopPropagation(); toggleFavorite('${g.url}')">
+        ${isFav(g.url) ? "⭐" : "☆"}
+      </button>
     </div>
   `).join("");
+
+  loadActiveTheme(); // 🔥 FIX: reapplies after render
 }
 
-/* NAV */
-function openGame(url){location.href="game.html?url="+encodeURIComponent(url);}
+/* =====================
+   NAV
+===================== */
+function openGame(url){
+  location.href = "game.html?url=" + encodeURIComponent(url);
+}
+
 function openComments(url){
-  localStorage.setItem("currentGame",url);
-  location.href="comments.html";
+  localStorage.setItem("currentGame", url);
+  location.href = "comments.html";
 }
-function openSettings(){location.href="settings.html";}
-function goBack(){location.href="index.html";}
 
-/* COMMENTS */
-let comments=JSON.parse(localStorage.getItem("comments")||"{}");
+function openSettings(){
+  location.href = "settings.html";
+}
+
+function goBack(){
+  location.href = "index.html";
+}
+
+/* =====================
+   COMMENTS
+===================== */
+let comments = JSON.parse(localStorage.getItem("comments") || "{}");
+let currentUser = localStorage.getItem("currentUser");
 
 function renderComments(){
-  let game=localStorage.getItem("currentGame");
-  let list=comments[game]||[];
+  let game = localStorage.getItem("currentGame");
+  let list = comments[game] || [];
 
-  let el=document.getElementById("commentList");
+  let el = document.getElementById("commentList");
   if(!el) return;
 
-  el.innerHTML=list.map(c=>`
+  el.innerHTML = list.map(c=>`
     <div class="comment"><b>${c.user}</b>: ${c.text}</div>
   `).join("");
+
+  loadActiveTheme();
 }
 
 function submitComment(){
-  let game=localStorage.getItem("currentGame");
-  let input=document.getElementById("commentInput");
-  if(!input||!input.value) return;
+  let game = localStorage.getItem("currentGame");
+  let input = document.getElementById("commentInput");
 
-  if(!comments[game]) comments[game]=[];
-  comments[game].push({user:currentUser||"Guest",text:input.value});
+  if(!input || !input.value) return;
 
-  localStorage.setItem("comments",JSON.stringify(comments));
-  input.value="";
+  if(!comments[game]) comments[game] = [];
+
+  comments[game].push({
+    user: currentUser || "Guest",
+    text: input.value
+  });
+
+  localStorage.setItem("comments", JSON.stringify(comments));
+  input.value = "";
   renderComments();
 }
 
-/* SEARCH */
-let search=document.getElementById("search");
-if(search){
-  search.oninput=e=>{
-    let v=e.target.value.toLowerCase();
-    loadGames(games.filter(g=>g.name.toLowerCase().includes(v)));
-  };
-}
-
-/* CATEGORY */
-function filterCategory(cat){
-  if(cat==="all") loadGames();
-  else loadGames(games.filter(g=>g.cat===cat));
-}
-
-/* START */
+/* =====================
+   START
+===================== */
 loadGames();
 renderComments();
-showUser();
 updateThemeList();
+loadActiveTheme();
