@@ -18,31 +18,28 @@
 
   <h3>👤 Account</h3>
   <input id="username" placeholder="Username">
-  <input id="password" placeholder="Password" type="password">
-
+  <input id="password" type="password" placeholder="Password">
   <button onclick="signup()">Sign Up</button>
   <button onclick="login()">Log In</button>
-
   <p id="currentUser"></p>
 
-  <h3>🎨 Theme</h3>
-  <label>Background</label>
+  <h3>🎨 Theme Creator</h3>
   <input type="color" id="bgColor">
-
-  <label>Cards</label>
   <input type="color" id="cardColor">
-
-  <label>Buttons</label>
   <input type="color" id="accentColor">
-
-  <label>Text</label>
   <input type="color" id="textColor">
 
-  <h3>🕶️ Tab Cloaking</h3>
+  <h3>🕶️ Cloak</h3>
   <input id="tabName" placeholder="Tab name">
   <input id="tabIcon" placeholder="Icon URL">
 
-  <button onclick="saveTheme()">Save All</button>
+  <input id="themeName" placeholder="Theme name">
+
+  <button onclick="saveTheme()">💾 Save Theme</button>
+
+  <h3>📂 Saved Themes</h3>
+  <select id="themeList"></select>
+  <button onclick="loadTheme()">Apply</button>
 
 </div>
 
